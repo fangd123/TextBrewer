@@ -236,6 +236,7 @@ def move_to_device(batch, device):
         return batch
 
 def get_outputs_from_batch(batch, device, model_T, model_S, args, no_teacher_forward=False):
+    batch = {"input_ids": batch[0], "attention_mask": batch[1], "labels": batch[3]}
     if type(batch) is dict:
         if 'teacher' in batch and 'student' in batch:
             teacher_batch = batch['teacher']
